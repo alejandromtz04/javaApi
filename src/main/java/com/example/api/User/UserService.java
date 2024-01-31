@@ -2,6 +2,7 @@ package com.example.api.User;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.example.api.Global.*;
 
@@ -27,15 +28,17 @@ public class UserService {
 
     public void modify(int id) {
         try {
-
+            
         } catch (Exception ex) {
             throw new CustomException("Internal server error: method modify from service", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public void findAll(User user) {
+    public String findAll(User user) {
         try {
-            userRepository.findAll();
+            List<User> userList = userRepository.findAll();
+            String parseUserList = userList.toString();
+            return parseUserList;
             
         } catch (Exception ex) {
             throw new CustomException("Internal server error: method findAll from service", HttpStatus.INTERNAL_SERVER_ERROR);
